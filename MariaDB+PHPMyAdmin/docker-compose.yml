@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+    mysql:
+      image: mariadb:10.5
+      restart: always
+      environment:
+                - MYSQL_DATABASE=test
+                - MYSQL_USER=test
+                - MYSQL_PASSWORD=password
+                - MYSQL_ROOT_PASSWORD=password
+                - TZ=Europe/Warsaw
+      volumes:
+            - ./mysql:/var/lib/mysql
+      ports:
+            - "3306:3306"
+    phpmyadmin:
+     image: phpmyadmin/phpmyadmin
+     restart: always
+     environment:
+            PMA_ARBITRARY: 1
+            MYSQL_USER: test
+            MYSQL_PASSWORD: password
+            MYSQL_ROOT_PASSWORD: password
+     ports:
+            - "8080:80"
+     links:
+            - "mysql:phpmyadmin"
+volumes:
+    db:
+        driver: "local"
