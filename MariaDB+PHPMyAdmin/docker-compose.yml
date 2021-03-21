@@ -22,6 +22,7 @@ services:
             MYSQL_USER: test
             MYSQL_PASSWORD: password
             MYSQL_ROOT_PASSWORD: password
+            UPLOAD_LIMIT: 1024M
      ports:
             - "8080:80"
      links:
